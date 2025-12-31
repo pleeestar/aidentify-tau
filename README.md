@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# aidentify v3.0
 
-## Getting Started
+プライバシー保護を最優先にした AI 画像編集システムのプロトタイプ。
+「動くもの」の先にある、拡張性と保守性を両立したシステムアーキテクチャの探求を目的としています。
 
-First, run the development server:
+[ここに実際の動作のGIFアニメーション、またはスクリーンショットを配置]
+[framer-motion で動く滑らかな画面遷移のGIF MacのKapで作っとく]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 💎 Key Concepts
+
+本プロジェクトでは、インターンシップや実務での大規模開発を見据え、以下の3点を徹底しています。
+
+### 1. Scene-Driven DSL (Architecture)
+`Scene = Layout ∘ Motion ∘ (View + VM)`
+独自の高階コンポーネント `createScene` を開発し、画面遷移のアニメーション、共通レイアウト、依存性の注入を「規約」として共通化しました。これにより、開発者はビジネスロジックとUI表現に集中できます。
+
+### 2. Strict Type Safety
+TypeScriptのGenericsを活用し、ViewModelとViewのデータ構造が一致しない限りビルドが通らない設計にしています。実行時エラーを最小限に抑え、安全なリファクタリングを可能にします。
+
+### 3. Design-Code Sync
+Figmaのデザインシステムを `Tailwind CSS` の設計（Design Tokens）に厳格にマッピングしています。
+- [Figma Design File Link]
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend**: Next.js 14 (App Router)
+- **State Management**: Zustand
+- **Animation**: Framer Motion
+- **Styling**: Tailwind CSS, clsx, tailwind-merge
+- **Testing**: Vitest, React Testing Library
+- **Icons**: Lucide React
+
+---
+
+## 📁 Directory Structure
+
+```text
+src/
+├── components/
+│   ├── primitives/  # 原子単位のUI部品 (VStack, HStack, Glyph...)
+│   ├── layout/      # 全画面共通の枠組み (Header, Surface)
+│   └── assemblies/  # 複数の部品を組み合わせた機能単位
+├── scenes/          # 画面ごとのAdapter (LogicとViewの結合)
+├── viewmodel/       # 純粋なビジネスロジック・状態操作
+├── store/           # グローバル状態 (Zustand)
+└── domain/          # 型定義、ドメイン知識の集約
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📐 Architecture Diagram
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```mermaid
+graph TD
+    subgraph Store_Layer["Store Layer (Zustand)"]
+        AppStore["AppStore (Scene/Intent/Mode)"]
+    end
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    subgraph Logic_Layer["Logic Layer (Hooks)"]
+        VM["useHomeVM / useSelectVM"]
+    end
 
-## Learn More
+    subgraph Adapter_Layer["Adapter Layer (DSL)"]
+        CS["createScene (HOC)"]
+    end
 
-To learn more about Next.js, take a look at the following resources:
+    subgraph UI_Layer["UI Layer (React)"]
+        direction TB
+        Layout["Layout (Surface/Header)"]
+        Motion["Motion (Framer Motion)"]
+        View["Pure View (Components)"]
+        Primitives["Primitives (VStack/HStack/Text)"]
+    end
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    %% Dependency Flow
+    AppStore -.->|Observe| VM
+    VM -->|Inject Logic| CS
+    CS -->|Compose| Layout
+    CS -->|Wrap| Motion
+    CS -->|Render| View
+    View -->|Structure| Primitives
+    
+    %% Interaction Flow
+    View -->|User Action| VM
+    VM -->|Update State| AppStore
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    style CS fill:#f96,stroke:#333,stroke-width:2px
+    style VM fill:#bbf,stroke:#333,stroke-width:1px
+    style AppStore fill:#dfd,stroke:#333,stroke-width:1px
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Getting Started
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このプロジェクトは、開発者体験（DX）向上のためのブートストラップスクリプトを備えています。
+
+```bash
+# セットアップと依存関係のインストール
+npm run setup
+
+# 開発サーバーの起動
+npm run dev
+
+# テストの実行
+npm run test
+
+```
+
+---
+
+## 📑 Documentation
+
+より深い設計意図については、以下のドキュメントを参照してください。
+
+* [Architecture Detail](/docs/ARCHITECTURE.md) - なぜこのパターンを採用したのか
+* [Design System](/DESIGN_SYSTEM.md) - Figmaとの連携とコンポーネント設計
+* Figma: [デザインファイル](https://www.figma.com/design/7Mx1oGmjI7TZVhLMN0O1BC/Aidentify-UI?node-id=2018-314&t=BNiz9XHR42Qde2zH-1)
+
+```
+
+package.json
+```json
+"scripts": {
+  "setup": "chmod +x docs/assets/bootstrap.sh && ./docs/assets/bootstrap.sh"
+}
+```

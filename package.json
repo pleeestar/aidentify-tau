@@ -8,12 +8,14 @@
     "start": "next start",
     "lint": "eslint",
     "setup": "chmod +x docs/assets/bootstrap.sh && ./docs/assets/bootstrap.sh",
-    "setup2": "chmod +x docs/assets/bootstrap2.sh && ./docs/assets/bootstrap2.sh"
+    "setup2": "chmod +x docs/assets/bootstrap2.sh && ./docs/assets/bootstrap2.sh",
+    "motion_patch": "chmod +x docs/assets/patch_motion.sh && ./docs/assets/patch_motion.sh"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
+    "motion": "^12.23.26",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",

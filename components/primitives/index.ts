@@ -11,7 +11,7 @@ export { Authorship } from "./Authorship";
 export { Sticker } from "./Sticker";
 export { Glyph } from "./Glyph";
 export { Badge } from "./Badge";
-export { Traits } from "./Traits";
+export { Trait } from "./Trait";
 export { Spinner } from "./Spinner";
 export { Tooltip } from "./Tooltip";
 export { Card } from "./Card";

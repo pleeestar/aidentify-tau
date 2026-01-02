@@ -7,46 +7,55 @@ import { Button, TraitsCarousel } from "@/components/assemblies/";
 import { motion } from "framer-motion";
 import { staggerContainer, fadeInUp } from "@/motion/variants";
 
+// Icons
+import {
+  ShieldUser,
+  Brain,
+  ScanText,
+  Cctv,
+  Bird,
+} from "lucide-react";
+
 type TraitItem = {
   id: string;
   title: string;
-  description?: string;
+  icon?: string;
 };
 
 const SERVICE_TRAITS: TraitItem[] = [
   {
     id: "privacy",
-    title: "個人情報を保護",
-    description: "画像内の個人情報を自動で検出・保護",
+    title: "AI個人情報を保護",
+    icon: ShieldUser,
   },
   {
-    id: "local",
-    title: "ローカル処理",
-    description: "データを外に出さず端末内で完結",
+    id: "ai-sort",
+    title: "AIが画像を分別し",
+    icon: Brain,
   },
   {
-    id: "fast",
-    title: "高速処理",
-    description: "待ち時間を感じさせない即時変換",
+    id: "llm",
+    title: "LLMが危険を解析",
+    icon: ScanText,
   },
   {
-    id: "simple",
-    title: "直感的UI",
-    description: "説明不要のシンプル操作",
+    id: "no-learn",
+    title: "学習に使いません",
+    icon: Cctv,
   },
   {
-    id: "reliable",
-    title: "安定した精度",
-    description: "実運用を想定した堅牢な検出ロジック",
-  },
+    id: "safety",
+    title: "安心なネットライフ",
+    icon: Bird,
+  }
 ];
 
 
 const HomeView = ({ vm }: { vm: any }) => (
   <VStack className="h-full justify-between p-6">
-    
+
     {/* Stagger Animation applied to the container */}
-    <motion.div 
+    <motion.div
       variants={staggerContainer}
       initial="hidden"
       animate="show"
@@ -56,17 +65,17 @@ const HomeView = ({ vm }: { vm: any }) => (
       <motion.div variants={fadeInUp}>
         <Badge>For your privacy</Badge>
       </motion.div>
-      
+
       <motion.div variants={fadeInUp}>
         <TraitsCarousel items={SERVICE_TRAITS} />
       </motion.div>
-      
+
       <motion.div variants={fadeInUp}>
         <Sticker />
       </motion.div>
     </motion.div>
 
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
@@ -74,7 +83,8 @@ const HomeView = ({ vm }: { vm: any }) => (
     >
       <Authorship />
       <Button onClick={vm.onLogin} className="w-full">
-        <Glyph variant="Upload" className="mr-2" /> Start
+        <Glyph variant="Upload" className="mr-2" />
+        <Text>Start</Text>
       </Button>
     </motion.div>
   </VStack>

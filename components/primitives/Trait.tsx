@@ -1,17 +1,15 @@
+import { LucideIcon } from "lucide-react";
+
 type TraitProps = {
   title: string;
-  description?: string;
+  icon: LucideIcon;
 };
 
-export const Trait = ({ title, description }: TraitProps) => {
+export const Trait = ({ title, icon: Icon }: TraitProps) => {
   return (
-    <div className="flex flex-col gap-1 rounded border border-white/10 p-3 bg-black/20">
-      <span className="text-sm font-medium">{title}</span>
-      {description && (
-        <span className="text-xs text-white/60">
-          {description}
-        </span>
-      )}
+    <div className="flex items-center gap-1 p-3">
+      <Icon className="w-6 h-6 w-10 h-10" />
+      <span className="text-2xl font-bold">{title}</span>
     </div>
   );
 };

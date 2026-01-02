@@ -1,7 +1,14 @@
 import { cn } from "@/lib/utils";
-import Sticker from "/Sticker.svg";
+import Image from "next/image";
+
 export const Sticker = ({ className, children, ...props }: any) => (
-  <div className={cn("border border-white/10 p-2 rounded", className)} {...props}>
-    <Sticker />
+  <div className={cn("p-2 rounded", className)} {...props}>
+    <Image
+      src="/sticker.png"
+      alt="Sticker"
+      width={100}
+      height={100}
+      className="object-contain"
+    />
   </div>
 );

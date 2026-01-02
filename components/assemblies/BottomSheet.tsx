@@ -1,16 +1,18 @@
 import { ReactNode } from "react";
-import { VStack } from "@/components/primitives/VStack";
-import { Text } from "@/components/primitives/Text";
+import { VStack, HStack, Text } from "@/components/primitives/";
 
 export const BottomSheet = ({ title, subtitle, children }: { title?: string; subtitle?: string; children: ReactNode }) => (
-  <div className="absolute bottom-0 w-full bg-[#1A1A1A] rounded-t-3xl p-6 shadow-2xl border-t border-white/10">
+  <div className="absolute bottom-0 w-full bg-[#1A1A1A] rounded-t-3xl px-5 pt-1 pb-5 shadow-2xl border border-white/10">
     <VStack gap={4}>
-      <div className="w-12 h-1 bg-white/20 rounded-full mx-auto" />
+      <div className="w-14 h-1.5 bg-[#050505] rounded-full mx-auto" />
       {(title || subtitle) && (
-        <div>
-          {title && <Text className="text-xl font-bold">{title}</Text>}
-          {subtitle && <Text className="text-xs opacity-50">{subtitle}</Text>}
-        </div>
+        <HStack gap={2} className="justify-between">
+          <VStack gap={2}>
+            {title && <Text className="text-[#ffffff22] text-3xl font-bold font-knewave">{title}</Text>}
+            {subtitle && <Text className="text-base font-bold font-inter text-[#ffffff25]">{subtitle}</Text>}
+          </VStack>
+          <Text className="font-libre-barcode-128 text-2xl text-[#ffffff25]">@pallet-cmp</Text>
+        </HStack>
       )}
       {children}
     </VStack>

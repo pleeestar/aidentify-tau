@@ -7,11 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "setup": "chmod +x docs/assets/bootstrap.sh && ./docs/assets/bootstrap.sh",
-    "setup2": "chmod +x docs/assets/bootstrap2.sh && ./docs/assets/bootstrap2.sh",
-    "motion_patch": "chmod +x docs/assets/patch_motion.sh && ./docs/assets/patch_motion.sh"
+    "setup": "chmod +x docs/assets/bootstrap_first.sh && ./docs/assets/bootstrap_first.sh",
+    "setup_patch": "chmod +x docs/assets/bootstrap_patch.sh && ./docs/assets/bootstrap_patch.sh",
+    "motion_patch": "chmod +x docs/assets/patch_motion.sh && ./docs/assets/patch_motion.sh",
+    "unity_patch": "chmod +x docs/assets/patch_unity.sh && ./docs/assets/patch_unity.sh"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",

@@ -27,6 +27,7 @@ const ResultView = ({ vm }: { vm: ReturnType<typeof useSceneVM> }) => (
 
 export const ResultScene = createScene({
   header: { kind: "text", title: "Result", action: "exit" },
+  surface: { kind: "darkNoise" },
   viewModel: useSceneVM,
   view: ResultView,
 });

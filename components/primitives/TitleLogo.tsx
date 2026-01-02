@@ -1,6 +1,14 @@
 import { cn } from "@/lib/utils";
-export const TitleLogo = ({ className, children, ...props }: any) => (
-  <div className={cn("border border-white/10 p-2 rounded", className)} {...props}>
-    TitleLogo {children}
+import Image from "next/image";
+
+export const TitleLogo = ({ className }: { className?: string }) => (
+  <div className={cn("relative h-10 aspect-[3/1]", className)}>
+    <Image
+      src="/Logo.svg"
+      alt="Aidentify"
+      fill
+      className="object-contain"
+      priority
+    />
   </div>
 );

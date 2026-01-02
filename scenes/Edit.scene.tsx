@@ -37,6 +37,7 @@ const EditView = ({ vm }: { vm: ReturnType<typeof useEditVM> }) => (
 
 export const EditScene = createScene({
   header: { kind: "text", title: "Edit", action: "exit" },
+  surface: { kind: "darkNoise" },
   viewModel: useEditVM,
   view: EditView,
 });

@@ -14,33 +14,40 @@ import {
   ScanText,
   Cctv,
   Bird,
+  PartyPopper
 } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 
 type TraitItem = {
   id: string;
   title: string;
-  icon?: string;
+  icon: LucideIcon;
 };
 
 const SERVICE_TRAITS: TraitItem[] = [
   {
+    id: "party-popper",
+    title: "明けおめことよろ！",
+    icon: PartyPopper,
+  },
+  {
     id: "privacy",
-    title: "AI個人情報を保護",
+    title: "AIが個人情報を保護",
     icon: ShieldUser,
   },
   {
     id: "ai-sort",
-    title: "AIが画像を分別し",
+    title: "AIが画像を分別する",
     icon: Brain,
   },
   {
     id: "llm",
-    title: "LLMが危険を解析",
+    title: "LMが危険を解析します",
     icon: ScanText,
   },
   {
     id: "no-learn",
-    title: "学習に使いません",
+    title: "学習には使いません",
     icon: Cctv,
   },
   {
@@ -63,7 +70,7 @@ const HomeView = ({ vm }: { vm: any }) => (
       className="flex-1 flex flex-col justify-center items-center gap-6"
     >
       <motion.div variants={fadeInUp}>
-        <Badge>For your privacy</Badge>
+        <Badge variant="default">For your privacy</Badge>
       </motion.div>
 
       <motion.div variants={fadeInUp}>
@@ -72,6 +79,10 @@ const HomeView = ({ vm }: { vm: any }) => (
 
       <motion.div variants={fadeInUp}>
         <Sticker />
+      </motion.div>
+
+      <motion.div variants={fadeInUp}>
+        <Text className="font-libre-barcode-128 text-4xl text-[#ffffff]">@pasokon_net</Text>
       </motion.div>
     </motion.div>
 
@@ -82,9 +93,9 @@ const HomeView = ({ vm }: { vm: any }) => (
       className="flex flex-col gap-4"
     >
       <Authorship />
-      <Button onClick={vm.onLogin} className="w-full">
+      <Button variant="secondary" onClick={vm.onLogin} className="w-full">
         <Glyph variant="Upload" className="mr-2" />
-        <Text>Start</Text>
+        <Text className="font-bold">画像をアップロード</Text>
       </Button>
     </motion.div>
   </VStack>
@@ -92,6 +103,7 @@ const HomeView = ({ vm }: { vm: any }) => (
 
 export const HomeScene = createScene({
   header: { kind: "logo", action: "login" },
+  surface: { kind: "gradientNoise" },
   viewModel: useSceneVM,
   view: HomeView,
 });

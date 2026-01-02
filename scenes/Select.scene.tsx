@@ -11,7 +11,7 @@ const SelectView = ({ vm }: { vm: any }) => (
     {/* Overlay */}
     <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-end">
       <div className="pointer-events-auto">
-        <BottomSheet title="Intent" subtitle="12 Intents">
+        <BottomSheet title="Pallet" subtitle="12 Intents">
             <VStack>
                 <Tooltip text="Select an intent" />
                 <IntentService onClick={vm.onSelectIntent} />
@@ -29,6 +29,7 @@ const SelectView = ({ vm }: { vm: any }) => (
 
 export const SelectScene = createScene({
   header: { kind: "text", title: "Select", action: "exit" },
+  surface: { kind: "darkNoise" },
   viewModel: useIntentVM,
   view: SelectView,
 });

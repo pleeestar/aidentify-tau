@@ -1,11 +1,63 @@
 import { Variants } from "framer-motion";
 
-// 画面遷移の標準アニメーション
-export const pageTransition: Variants = {
-  initial: { opacity: 0, scale: 0.98, filter: "blur(10px)" },
-  animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
-  exit: { opacity: 0, scale: 1.02, filter: "blur(10px)" },
+// iOS風の画面遷移アニメーション（下から上にスライド）
+export const pageTransitionForward: Variants = {
+  initial: { 
+    y: "100%", // 画面下から開始
+    opacity: 0 
+  },
+  animate: { 
+    y: 0, // 通常位置に
+    opacity: 1,
+    transition: { 
+      type: "spring", 
+      stiffness: 300, 
+      damping: 30,
+      mass: 0.8
+    }
+  },
+  exit: { 
+    y: "-100%", // 画面上に退場
+    opacity: 0,
+    transition: { 
+      type: "spring", 
+      stiffness: 300, 
+      damping: 30,
+      mass: 0.8
+    }
+  },
 };
+
+// iOS風の画面遷移アニメーション（上から下にスライド - 戻る時）
+export const pageTransitionBackward: Variants = {
+  initial: { 
+    y: "-100%", // 画面上から開始
+    opacity: 0 
+  },
+  animate: { 
+    y: 0, // 通常位置に
+    opacity: 1,
+    transition: { 
+      type: "spring", 
+      stiffness: 300, 
+      damping: 30,
+      mass: 0.8
+    }
+  },
+  exit: { 
+    y: "100%", // 画面下に退場
+    opacity: 0,
+    transition: { 
+      type: "spring", 
+      stiffness: 300, 
+      damping: 30,
+      mass: 0.8
+    }
+  },
+};
+
+// 後方互換性のため
+export const pageTransition = pageTransitionForward;
 
 // コンテナ内の要素を順番に出現させる (Stagger)
 export const staggerContainer: Variants = {

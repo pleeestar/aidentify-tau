@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Knewave, Caveat, Inter, Libre_Barcode_128_Text } from "next/font/google";
 import "./globals.css";
+
+const knewave = Knewave({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-knewave",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +16,23 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const caveat = Caveat({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-caveat",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const libreBarcode128 = Libre_Barcode_128_Text({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-libre-barcode-128",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${knewave.variable} ${caveat.variable} ${inter.variable} ${libreBarcode128.variable} antialiased`}
       >
         {children}
       </body>

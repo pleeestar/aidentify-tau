@@ -10,6 +10,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-knewave: var(--font-knewave), sans-serif;
+  --font-caveat: var(--font-caveat), sans-serif;
+  --font-inter: var(--font-inter), sans-serif;
+  --font-libre-barcode-128: var(--font-libre-barcode-128), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,24 +29,43 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.noise-bg {
+.noise-gradient-bg {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    #0269FF 0%,
-    #107AFE 6%,
-    #93C6F1 57%,
-    #FAFDE2 96%
-  );
+  background: linear-gradient(180deg,
+      #0269FF 0%,
+      #107AFE 6%,
+      #93C6F1 57%,
+      #FAFDE2 96%);
   overflow: hidden;
 }
 
-.noise-bg::after {
+.noise-gradient-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/noise.png");
+  mix-blend-mode: overlay;
+  /* or soft-light */
+  opacity: 1;
+  pointer-events: none;
+}
+
+.dark-noise-bg {
+  position: relative;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+.dark-noise-bg::after {
   content: "";
   position: absolute;
   inset: 0;
   background-image: url("/noise.png");
   background-repeat: repeat;
-  background-size: auto;
+  background-size: 100px 100px;
+  mix-blend-mode: soft-light;
+  opacity: 1;
   pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
 }

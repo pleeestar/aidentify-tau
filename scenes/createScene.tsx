@@ -1,27 +1,26 @@
-import { ReactNode } from "react";
-import { HeaderSpec } from "@/domain/types";
-import { Header } from "@/components/layout/Header";
-import { Surface } from "@/components/layout/Surface";
+import { ReactNode, useEffect } from "react";
+import { useSceneStore } from "@/store/scene.store";
+import { SurfaceSpec, HeaderSpec } from "@/domain/types";
 
 type AdapterConfig<VM> = {
-  header: HeaderSpec;
   viewModel: () => VM;
   view: (props: { vm: VM }) => ReactNode;
+  surface?: SurfaceSpec;
+  header?: HeaderSpec; // 型エラー回避のため追加（現在は未使用）
 };
 
 export function createScene<VM>(config: AdapterConfig<VM>) {
   return function SceneAdapter() {
     const vm = config.viewModel();
-    // VM must map actions to match header spec actions if needed
-    const handleAction = (vm as any).onExit || (vm as any).onCancel || (() => console.log("Action"));
+    const setSurfaceSpec = useSceneStore((s) => s.setSurfaceSpec);
 
-    return (
-      <Surface>
-        <Header spec={config.header} onAction={handleAction} />
-        <div className="w-full h-full relative flex flex-col">
-          <config.view vm={vm} />
-        </div>
-      </Surface>
-    );
+    // マウント時にsurfaceSpecをzustandに設定
+    useEffect(() => {
+      if (config.surface) {
+        setSurfaceSpec(config.surface);
+      }
+    }, [config.surface, setSurfaceSpec]);
+
+    return <config.view vm={vm} />;
   };
 }

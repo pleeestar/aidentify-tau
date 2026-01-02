@@ -32,6 +32,7 @@ const ProcessView = ({ vm }: { vm: any }) => (
 
 export const ProcessScene = createScene({
   header: { kind: "none" },
+  surface: { kind: "darkNoise" },
   viewModel: useProcessVM,
   view: ProcessView,
 });

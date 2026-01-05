@@ -1,6 +1,13 @@
 // Discriminated Unions for State
 export type SceneKind = "home" | "select" | "edit" | "process" | "result";
 export type Intent = "mask" | "blur" | "pixelate" | "remove" | "auto";
+export const IntentLabel: Record<Intent, string> = {
+  mask: "マスク",
+  blur: "ぼかし",
+  pixelate: "モザイク",
+  remove: "消去",
+  auto: "おまかせ",
+};
 export type EditMode = "crop" | "tune" | "magic";
 
 export type HeaderSpec = 

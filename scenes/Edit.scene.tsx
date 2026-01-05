@@ -1,7 +1,7 @@
 import { createScene } from "./createScene";
 import { useEditVM } from "@/viewmodel/edit.vm";
 import { VStack, HStack, ZStack, Spacer, Text, Glyph } from "@/components/primitives/";
-import { CropOverlay, IntentService, ModeCarouselService, Slider, Button } from "@/components/assemblies/";
+import { CropOverlay, IntentCarousel, ModeCarouselService, Slider, Button } from "@/components/assemblies/";
 
 const EditView = ({ vm }: { vm: ReturnType<typeof useEditVM> }) => (
   <div className="h-full w-full flex flex-col p-4">
@@ -17,7 +17,7 @@ const EditView = ({ vm }: { vm: ReturnType<typeof useEditVM> }) => (
           </ZStack>
 
           <HStack as="Control" className="justify-between">
-             <IntentService className="w-1/3" />
+             <IntentCarousel className="w-1/3" />
              <ModeCarouselService className="w-1/3" />
              <Button className="w-12 h-12 p-0">
                <Glyph variant="FullscreenExit" />

@@ -1,5 +1,5 @@
 export { CropOverlay } from "./CropOverlay";
-export { IntentService } from "./IntentService";
+export { IntentCarousel } from "./IntentCarousel";
 export { ModeCarouselService } from "./ModeCarouselService";
 export { Slider } from "./Slider";
 export { Button } from "./Button";

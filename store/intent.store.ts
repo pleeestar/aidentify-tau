@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import { Intent } from "@/domain/types";
+import { Intent } from "@/domain/domain";
 
 interface IntentState {
-  selectedIntent: Intent | null;
+  intent: Intent;
   setIntent: (intent: Intent) => void;
 }
 
 export const useIntentStore = create<IntentState>((set) => ({
-  selectedIntent: null,
-  setIntent: (intent) => set({ selectedIntent: intent }),
+  intent: "pixelate", // 初期値はどこか一つ
+  setIntent: (intent) => set({ intent }),
 }));

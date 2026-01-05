@@ -13,5 +13,5 @@ export { Glyph } from "./Glyph";
 export { Badge } from "./Badge";
 export { Trait } from "./Trait";
 export { Spinner } from "./Spinner";
-export { Tooltip } from "./Tooltip";
+export { IntentMeter } from "./IntentMeter";
 export { Card } from "./Card";
